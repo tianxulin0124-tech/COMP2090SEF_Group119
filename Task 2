@@ -1,0 +1,330 @@
+from abc import ABC, abstractmethod
+from datetime import datetime, timedelta
+
+# ===================== Abstract Class (Abstraction)=====================
+class LibraryItem(ABC):
+    """Abstract base class for library items (demonstrates abstraction)"""
+    def __init__(self, item_id, title, author):
+        # Encapsulation: All attributes are private, accessed via methods
+        self._item_id = item_id
+        self._title = title
+        self._author = author
+        self._is_available = True  # Whether the item is available for borrowing
+        self._borrower_id = None   # ID of the borrower
+        self._borrow_date = None   # Borrow date
+
+    # Encapsulation: Property accessor (getter)
+    @property
+    def item_id(self):
+        return self._item_id
+
+    @property
+    def title(self):
+        return self._title
+
+    @property
+    def is_available(self):
+        return self._is_available
+
+    # Abstract method: Must be implemented by subclasses (demonstrates abstraction + polymorphism)
+    @abstractmethod
+    def get_item_type(self):
+        pass
+
+    # Encapsulation: Core business methods
+    def borrow(self, user_id):
+        """Borrow an item"""
+        if self._is_available:
+            self._is_available = False
+            self._borrower_id = user_id
+            self._borrow_date = datetime.now()
+            return True
+        return False
+
+    def return_item(self):
+        """Return an item"""
+        if not self._is_available:
+            self._is_available = True
+            self._borrower_id = None
+            self._borrow_date = None
+            return True
+        return False
+
+    def get_borrow_info(self):
+        """Get borrowing information"""
+        if self._borrow_date:
+            due_date = self._borrow_date + timedelta(days=14)  # 14-day borrowing period
+            return f"Borrower ID: {self._borrower_id}, Borrow Date: {self._borrow_date.strftime('%Y-%m-%d')}, Due Date: {due_date.strftime('%Y-%m-%d')}"
+        return "Not borrowed"
+
+# ===================== Subclasses (Inheritance + Polymorphism)=====================
+class Book(LibraryItem):
+    """Book class (inherits from LibraryItem)"""
+    def __init__(self, item_id, title, author, isbn, category):
+        super().__init__(item_id, title, author)
+        self._isbn = isbn
+        self._category = category  # Book category
+
+    def get_item_type(self):
+        """Override abstract method (polymorphism)"""
+        return "Book"
+
+    def __str__(self):
+        """Custom print format"""
+        return f"[{self.get_item_type()}] ID: {self._item_id}, Title: {self._title}, Author: {self._author}, Category: {self._category}, Status: {'Available' if self._is_available else 'Borrowed'}"
+
+class Magazine(LibraryItem):
+    """Magazine class (inherits from LibraryItem, demonstrates polymorphism)"""
+    def __init__(self, item_id, title, author, issue_number):
+        super().__init__(item_id, title, author)
+        self._issue_number = issue_number  # Issue number
+
+    def get_item_type(self):
+        """Override abstract method (polymorphism)"""
+        return "Magazine"
+
+    def __str__(self):
+        return f"[{self.get_item_type()}] ID: {self._item_id}, Title: {self._title}, Author: {self._author}, Issue: {self._issue_number}, Status: {'Available' if self._is_available else 'Borrowed'}"
+
+# ===================== User Classes (Inheritance + Polymorphism)=====================
+class User(ABC):
+    """Abstract base class for users"""
+    def __init__(self, user_id, name, contact):
+        self._user_id = user_id
+        self._name = name
+        self._contact = contact
+
+    @property
+    def user_id(self):
+        return self._user_id
+
+    @property
+    def name(self):
+        return self._name
+
+    @abstractmethod
+    def get_user_type(self):
+        pass
+
+class Reader(User):
+    """Regular reader class"""
+    def __init__(self, user_id, name, contact):
+        super().__init__(user_id, name, contact)
+        self._borrowed_items = []  # List of borrowed items
+
+    def get_user_type(self):
+        return "Regular Reader"
+
+    def add_borrowed_item(self, item):
+        """Add borrowed item to list"""
+        self._borrowed_items.append(item)
+
+    def remove_borrowed_item(self, item):
+        """Remove returned item from list"""
+        if item in self._borrowed_items:
+            self._borrowed_items.remove(item)
+
+    def __str__(self):
+        return f"[{self.get_user_type()}] ID: {self._user_id}, Name: {self._name}, Contact: {self._contact}, Borrowed Items: {len(self._borrowed_items)}"
+
+class Librarian(User):
+    """Librarian class (demonstrates polymorphism)"""
+    def __init__(self, user_id, name, contact, staff_id):
+        super().__init__(user_id, name, contact)
+        self._staff_id = staff_id  # Staff ID
+
+    def get_user_type(self):
+        return "Librarian"
+
+    def __str__(self):
+        return f"[{self.get_user_type()}] ID: {self._user_id}, Name: {self._name}, Contact: {self._contact}, Staff ID: {self._staff_id}"
+
+# ===================== Main Library Class (Composition)=====================
+class LibrarySystem:
+    """Library Management System (Composition: contains multiple Item and User objects)"""
+    def __init__(self):
+        self._items = []  # All library items
+        self._users = []  # All users
+
+    # Item management
+    def add_item(self, item):
+        """Add a library item"""
+        for existing in self._items:
+            if existing.item_id == item.item_id:
+                print(f"Error: Item ID {item.item_id} already exists!")
+                return False
+        self._items.append(item)
+        print(f"Added successfully: {item}")
+        return True
+
+    def remove_item(self, item_id):
+        """Remove a library item"""
+        for index, item in enumerate(self._items):
+            if item.item_id == item_id:
+                removed = self._items.pop(index)
+                print(f"Removed successfully: {removed}")
+                return True
+        print(f"Error: Item ID {item_id} does not exist!")
+        return False
+
+    def search_item(self, keyword):
+        """Search items (supports fuzzy search by title/author/ID)"""
+        results = []
+        for item in self._items:
+            if (keyword.lower() in item.title.lower() or 
+                keyword.lower() in item._author.lower() or 
+                keyword in item.item_id):
+                results.append(item)
+        return results
+
+    # User management
+    def add_user(self, user):
+        """Add a user"""
+        for existing in self._users:
+            if existing.user_id == user.user_id:
+                print(f"Error: User ID {user.user_id} already exists!")
+                return False
+        self._users.append(user)
+        print(f"Added user successfully: {user}")
+        return True
+
+    def get_user_by_id(self, user_id):
+        """Find user by ID"""
+        for user in self._users:
+            if user.user_id == user_id:
+                return user
+        return None
+
+    # Core borrowing/returning functions
+    def borrow_item(self, user_id, item_id):
+        """Borrow an item"""
+        # Find user
+        user = self.get_user_by_id(user_id)
+        if not user or not isinstance(user, Reader):
+            print("Error: Only regular readers can borrow items, or user ID does not exist!")
+            return False
+        
+        # Find item
+        target_item = None
+        for item in self._items:
+            if item.item_id == item_id:
+                target_item = item
+                break
+        if not target_item:
+            print(f"Error: Item ID {item_id} does not exist!")
+            return False
+        
+        # Perform borrowing
+        if target_item.borrow(user_id):
+            user.add_borrowed_item(target_item)
+            print(f"Borrow successful! {user.name} has borrowed: {target_item.title}")
+            return True
+        else:
+            print(f"Borrow failed! {target_item.title} is already borrowed")
+            return False
+
+    def return_item(self, item_id):
+        """Return an item"""
+        # Find item
+        target_item = None
+        for item in self._items:
+            if item.item_id == item_id:
+                target_item = item
+                break
+        if not target_item:
+            print(f"Error: Item ID {item_id} does not exist!")
+            return False
+        
+        # Find borrower
+        borrower = self.get_user_by_id(target_item._borrower_id)
+        if not borrower:
+            print("Error: Borrower of this item not found!")
+            return False
+        
+        # Perform return
+        if target_item.return_item():
+            borrower.remove_borrowed_item(target_item)
+            print(f"Return successful! {borrower.name} has returned: {target_item.title}")
+            return True
+        else:
+            print(f"Return failed! {target_item.title} was not borrowed")
+            return False
+
+    # Auxiliary functions
+    def list_all_items(self):
+        """List all library items"""
+        if not self._items:
+            print("No library items available")
+            return
+        print("\n=== Library Items List ===")
+        for item in self._items:
+            print(item)
+            print(f"   Borrow Info: {item.get_borrow_info()}")
+        print("==========================")
+
+    def list_all_users(self):
+        """List all users"""
+        if not self._users:
+            print("No registered users")
+            return
+        print("\n=== Users List ===")
+        for user in self._users:
+            print(user)
+        print("==================")
+
+# ===================== Interactive Interface =====================
+def main():
+    """System main interface"""
+    library = LibrarySystem()
+    
+    # Initialize test data
+    print("=== Initializing Library Test Data ===")
+    # Add items
+    library.add_item(Book("B001", "Python Crash Course", "Eric Matthes", "9787115428028", "Programming"))
+    library.add_item(Book("B002", "Core Java", "Cay Horstmann", "9787111641247", "Programming"))
+    library.add_item(Magazine("M001", "National Geographic", "National Geographic Society", "2024-03"))
+    # Add users
+    library.add_user(Reader("U001", "Zhang San", "13800138000"))
+    library.add_user(Reader("U002", "Li Si", "13900139000"))
+    library.add_user(Librarian("A001", "Librarian Lao Wang", "13700137000", "S001"))
+
+    # Main menu
+    while True:
+        print("\n===== Library Management System =====")
+        print("1. Borrow Item")
+        print("2. Return Item")
+        print("3. Search Item")
+        print("4. View All Items")
+        print("5. View All Users")
+        print("6. Exit System")
+        print("====================================")
+        
+        choice = input("Please enter operation number (1-6): ")
+        if choice == "1":
+            user_id = input("Please enter reader ID: ")
+            item_id = input("Please enter item ID: ")
+            library.borrow_item(user_id, item_id)
+        elif choice == "2":
+            item_id = input("Please enter item ID: ")
+            library.return_item(item_id)
+        elif choice == "3":
+            keyword = input("Please enter search keyword (title/author/ID): ")
+            results = library.search_item(keyword)
+            if results:
+                print("\n=== Search Results ===")
+                for item in results:
+                    print(item)
+            else:
+                print("No matching items found")
+        elif choice == "4":
+            library.list_all_items()
+        elif choice == "5":
+            library.list_all_users()
+        elif choice == "6":
+            print("Thank you for using Library Management System, goodbye!")
+            break
+        else:
+            print("Invalid input, please enter a number between 1 and 6!")
+
+if __name__ == "__main__":
+    main()
