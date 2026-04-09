@@ -37,29 +37,30 @@ class MaxHeap:
 
     def delete_top(self):
         if not self.heap:
-            return None 
+            return None
         
         top_value = self.heap[0]
-        
+
         if len(self.heap) == 1:
             self.heap.pop()
             return top_value
-        
+
         self.heap[0] = self.heap[-1]
         self.heap.pop()
         self.heapify_down(0)
-        
+
         return top_value
 
     def display_heap(self):
         return self.heap
 
-# Test code
 if __name__ == "__main__":
     heap = MaxHeap()
-    test_data = [10, 8, 5, 3]
+    test_data = [5, 3, 8, 10]
+    
     for num in test_data:
         heap.insert(num)
+    
     print("Heap content:", heap.display_heap())
     print("Deleted top element:", heap.delete_top())
     print("Heap after deletion:", heap.display_heap())

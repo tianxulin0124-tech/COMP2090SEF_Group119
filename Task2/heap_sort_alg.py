@@ -6,12 +6,13 @@ def heap_sort(input_list):
     max_heap = MaxHeap()
     for item in input_list:
         max_heap.insert(item)
+    
     descending_list = []
     while max_heap.display_heap():
         descending_list.append(max_heap.delete_top())
+    
     return descending_list[::-1]
 
-# Test code
 if __name__ == "__main__":
     original_list = [5, 2, 9, 1, 6]
     print("Original list:", original_list)
