@@ -1,4 +1,4 @@
-# COMP2090SEF Group 119 - Task 2 Final Submission
+# COMP2090SEF Group 119 Final Submission
 # Library Management System
 A simple OOP-based library management system written in Python
 
