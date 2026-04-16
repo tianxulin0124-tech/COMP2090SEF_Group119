@@ -82,8 +82,6 @@ Self-study and implementation of:
 5. Add input validation (e.g., check ID format, prevent empty input)
 
 ## How to Run
-### Prerequisites
-- Python 3.6 or higher installed (check with `python --version` in terminal)
 
 ### Execution Steps
 1. Clone or download the project to your local machine:
