@@ -64,13 +64,40 @@ The system automatically loads test data on startup.
 ---
 
 ## Update Log
+## Update Log
+
+### v0.1.0 (2026-03-25)
+- Project initialization and basic structure setup
+- Created core abstract classes: LibraryItem and User
+- Implemented basic class skeleton for Book, Magazine, Reader, and Librarian
+- Added borrowing and returning logic
+- Implemented item status control (Available / Borrowed)
+- Added encapsulation using private attributes and property methods
+- Completed basic inheritance structure for all subclasses
+
+### v0.2.0 (2026-03-30)
+- Added search function by title, author, and item ID
+- Implemented polymorphism through method overriding
+- Added date calculation using datetime module (14-day borrow period)
+- Improved system stability and error prompts
+
+### v0.3.0 (2026-04-05)
+- Built complete command-line menu interface
+- Added view functions for all items and users
+- Added built‑in test data for quick demonstration
+- Optimized output format and display layout
+
+### v0.4.0 (2026-04-10)
+- Fixed bugs in user permission checks
+- Enhanced input validation and error handling
+- Improved code readability and structure
+- Added comments for key functions
+
 ### v1.0.0 (2026-04-16)
-- Initial version completed
-- Implemented core borrowing and returning functions
-- Added book and user management modules
-- Added search and display functions
-- Applied OOP concepts: abstraction, encapsulation, inheritance, polymorphism
-- Added built-in test data for quick demonstration
+- Final stable version released
+- All OOP concepts fully implemented and tested
+- Completed user guide and test cases
+- System fully functional for demonstration and submission
 
 ---
 
