@@ -1,6 +1,6 @@
 # COMP2090SEF Group 119 - Task 2 Final Submission
 # Library Management System
-A simple OOP-based library management system written in Python, developed for COMP2090SEF / COMP8090SEF/S209W (EECS S&T HKMU).
+A simple OOP-based library management system written in Python
 
 ## Topic
 Self-study and implementation of:
