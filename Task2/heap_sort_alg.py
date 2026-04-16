@@ -13,6 +13,10 @@ def heap_sort(input_list):
     
     return descending_list[::-1]
 
+<<<<<<< Updated upstream
+=======
+# Test the heap_sort function
+>>>>>>> Stashed changes
 if __name__ == "__main__":
     original_list = [5, 2, 9, 1, 6]
     print("Original list:", original_list)

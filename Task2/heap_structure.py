@@ -54,6 +54,10 @@ class MaxHeap:
     def display_heap(self):
         return self.heap
 
+<<<<<<< Updated upstream
+=======
+# Test the MaxHeap class
+>>>>>>> Stashed changes
 if __name__ == "__main__":
     heap = MaxHeap()
     test_data = [5, 3, 8, 10]
