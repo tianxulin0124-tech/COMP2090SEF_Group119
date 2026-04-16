@@ -122,6 +122,9 @@ Zelle, J. M. (2017). Python programming: An introduction to computer science (2n
 
 Hu, X. C., Tian, J., & Chen, Y. (2021). Research and development of library information management system based on Python. Information Technology and Informatization, (5), 37–40.
 
+## video link
+https://github.com/tianxulin0124-tech/COMP2090SEF_Group119/issues/6#issue-4276389008
+
 
 # COMP2090SEF Group 119 - Task 2 Final Submission
 
