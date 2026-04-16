@@ -1,92 +1,103 @@
 # COMP2090SEF Group 119 - Task 1 Final Submission
 # Library Management System
-A simple OOP-based library management system written in Python
+A simple command-line Library Management System developed in Python, based on Object-Oriented Programming (OOP) concepts. This project simulates core library operations including book borrowing, returning, searching, and user management.
 
-## Topic
-Self-study and implementation of:
-- **Object-Oriented Programming (OOP)** core concepts (Abstraction, Encapsulation, Inheritance, Polymorphism)
-- A menu-driven command-line Library Management System to simulate real library operations
+---
 
-## Project Files
-| File Name | Description |
-|-----------|-------------|
-| `library_system.py` | Full implementation of the library management system (includes all OOP classes and CLI interactive interface) |
-| `README.md` | Project documentation (usage, features, OOP details) |
-| `User_Guide.md` | Step-by-step guide to run and test the system (optional) |
-| `Project_Report.pdf` | Formal project report (covers core functions, OOP usage, self-reflection) |
+## Features
+- Borrow and return books and magazines
+- Search items by title, author, or ID
+- View all library items and their availability status
+- View all registered users (readers and librarians)
+- Automatic 14-day borrowing period calculation
+- Menu-driven command-line interface
 
-## Core Functions
-### Library Item Management
-- `add_item(item)`: Add new library items (Books/Magazines) to inventory
-- `remove_item(item_id)`: Remove existing items from inventory
-- `search_item(keyword)`: Search items by title, author, or item ID (fuzzy match)
-- `list_all_items()`: Display all items with availability and borrowing details
-
-### User Management
-- `add_user(user)`: Register new users (Readers/Librarians)
-- `get_user_by_id(user_id)`: Retrieve user information by ID
-- `list_all_users()`: Display all registered users and their roles
-
-### Borrow & Return Operations
-- `borrow_item(user_id, item_id)`: Allow readers to borrow available items (14-day borrowing period)
-- `return_item(item_id)`: Process item returns and update availability status
+---
 
 ## OOP Concepts Implemented
-### 1. Abstraction
-- Abstract Base Classes (ABC): `LibraryItem` (for all library items) and `User` (for all system users)
-- Mandatory abstract methods: `get_item_type()` (for items) and `get_user_type()` (for users)
-- Purpose: Define unified interface for subclasses, hide unnecessary implementation details
+- Abstraction: Abstract base classes `LibraryItem` and `User`
+- Encapsulation: Private attributes with controlled access
+- Inheritance: `Book`/`Magazine` from `LibraryItem`; `Reader`/`Librarian` from `User`
+- Polymorphism: Method overriding in subclasses
 
-### 2. Encapsulation
-- Private attributes (prefixed with `_`): `_item_id`, `_is_available`, `_borrowed_items`, `_user_id`
-- Controlled access via `@property` decorators (e.g., `item_id`, `user_id`)
-- Public business methods: `borrow()`, `return_item()`, `add_borrowed_item()`
-- Purpose: Ensure data integrity, prevent invalid modification of core attributes
+---
 
-### 3. Inheritance
-| Parent Class | Subclasses | Inherited Attributes | Unique Features |
-|--------------|------------|----------------------|-----------------|
-| `LibraryItem` | `Book` | `_item_id`, `_title`, `_author`, `_is_available` | `_isbn`, `_category` |
-| `LibraryItem` | `Magazine` | `_item_id`, `_title`, `_author`, `_is_available` | `_issue_number` |
-| `User` | `Reader` | `_user_id`, `_name`, `_contact` | `_borrowed_items` list, borrow/return permissions |
-| `User` | `Librarian` | `_user_id`, `_name`, `_contact` | `_staff_id`, no borrowing permissions |
-- Purpose: Reuse core code, reduce redundancy, extend functionality for specific types
+## User Guide
 
-### 4. Polymorphism
-- Method overriding in subclasses:
-  - `Book.get_item_type()` → returns "Book"
-  - `Magazine.get_item_type()` → returns "Magazine"
-  - `Reader.get_user_type()` → returns "Regular Reader"
-  - `Librarian.get_user_type()` → returns "Librarian"
-- Purpose: Uniform handling of different subclasses, flexible extension (e.g., add `DVD` type without changing core logic)
+### 1. Environment Requirements
+- Python 3.6 or above
 
-## External Resources Declaration
-- No external third-party libraries are used in this project
-- All functions rely on Python's built-in standard libraries:
-  - `abc`: Implement abstract base classes (core for OOP abstraction)
-  - `datetime`: Calculate borrowing periods (14-day limit) and due dates
-- All code is original, no external code (from GitHub/other programmers) is used
+### 2. How to Run
+1. Save the code as `library_system.py`
+2. Open terminal or command prompt
+3. Navigate to the project folder
+4. Run the program:
 
-## Self-Reflection
-### Potential Weaknesses
-1. **No data persistence**: All data (items/users/borrowing records) is stored in memory and lost when the program closes
-2. **Basic CLI only**: No graphical user interface (GUI), low usability for non-technical users
-3. **Limited security**: No password authentication, any user with a valid ID can borrow items
-4. **Simple permission control**: Only basic differentiation between readers and librarians
 
-### Future Improvements
-1. Add data persistence using `json`/`csv` files or SQLite database
-2. Implement a GUI with Python's built-in `tkinter` library
-3. Add password hashing and role-based permission control (e.g., only librarians can add/remove items)
-4. Extend features: item reservation, overdue fine calculation, borrowing statistics reports
-5. Add input validation (e.g., check ID format, prevent empty input)
+### 3. Menu Functions
+1. Borrow Item
+2. Return Item
+3. Search Item
+4. View All Items
+5. View All Users
+6. Exit System
 
-## How to Run
+### 4. Test Instructions
+The system automatically loads test data on startup.
 
-### Execution Steps
-1. Clone or download the project to your local machine:
-   ```bash
-   git clone [your-github-repository-url]
+#### Test Users
+- Reader: U001 (Zhang San)
+- Reader: U002 (Li Si)
+- Librarian: A001 (Cannot borrow items)
+
+#### Test Items
+- B001: Python Crash Course
+- B002: Core Java
+- M001: National Geographic
+
+### 5. Example Operation
+1. Choose 1 → Enter U001 → Enter B001 (Borrow book)
+2. Choose 4 → Check status is Borrowed
+3. Choose 2 → Enter B001 (Return book)
+4. Choose 6 → Exit
+
+---
+
+## Update Log
+### v1.0.0 (2026-04-16)
+- Initial version completed
+- Implemented core borrowing and returning functions
+- Added book and user management modules
+- Added search and display functions
+- Applied OOP concepts: abstraction, encapsulation, inheritance, polymorphism
+- Added built-in test data for quick demonstration
+
+---
+
+## References
+Gamma, E., Helm, R., Johnson, R., & Vlissides, J. (1994). Design patterns: Elements of reusable object-oriented software. Addison-Wesley.
+
+Kumar, V., & Singh, S. (2020). Design and implementation of a library management system using Python. International Journal of Scientific Research.
+
+Lott, S. F., & Phillips, D. (2021). Python object-oriented programming (4th ed.). Packt Publishing.
+
+Lutz, M. (2013). Learning Python (5th ed.). O’Reilly Media.
+
+Martelli, A., Ravenscroft, A., & Ascher, D. (2010). Python cookbook (3rd ed.). O’Reilly Media.
+
+Martin, R. C. (2008). Clean code: A handbook of agile software craftsmanship. Prentice Hall.
+
+Nwokwu, P. M. (2018). Development of library management system with Python. International Journal of Engineering.
+
+Ramalho, L. (2022). Fluent Python (2nd ed.). O’Reilly Media.
+
+Python Software Foundation. (2024). abc — Abstract base classes. Python Documentation. Retrieved from https://docs.python.org/3/library/abc.html
+
+Python Software Foundation. (2024). datetime — Basic date and time types. Python Documentation. Retrieved from https://docs.python.org/3/library/datetime.html
+
+Zelle, J. M. (2017). Python programming: An introduction to computer science (2nd ed.). Franklin, Beedle & Associates.
+
+Hu, X. C., Tian, J., & Chen, Y. (2021). Research and development of library information management system based on Python. Information Technology and Informatization, (5), 37–40.
 
 
 # COMP2090SEF Group 119 - Task 2 Final Submission
