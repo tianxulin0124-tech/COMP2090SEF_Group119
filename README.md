@@ -149,14 +149,11 @@ This project is used to solve the book borrow count sorting problem in our Task 
 - Time complexity: O(n log n)
 
 ## How to Run
-<<<<<<< Updated upstream
-python heap_structure.py
-python heap_sort_alg.py
-=======
-1. Open command line and navigate to the Task2 folder
+1. Open CMD in the project folder
 2. Run MaxHeap test: `python heap_structure.py`
 3. Run Heap Sort test: `python heap_sort_alg.py`
->>>>>>> Stashed changes
+
+---
 
 ## Test Results
 Normal Test
@@ -169,6 +166,22 @@ Single element: works without error
 Limitation
 - The program cannot handle non-numeric input (e.g. string)
 - Will be improved in future versions
+
+---
+
+## Update Log
+### 2026-03-07
+- First version completed
+- Added Max Heap & Heap Sort
+
+###2026-04-16
+- Fixed empty heap bug
+- Added edge case tests
+- Added test results and error cases
+- Updated README with full description
+- Finalized report and video
+
+---
 
 ## References
 GeeksforGeeks. "Max Heap in Python". https://www.geeksforgeeks.org/max-heap-in-python/ 
