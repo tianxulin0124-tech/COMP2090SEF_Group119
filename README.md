@@ -24,17 +24,14 @@ A simple command-line Library Management System developed in Python, based on Ob
 
 ## User Guide
 
-### 1. Environment Requirements
-- Python 3.6 or above
-
-### 2. How to Run
+### 1. How to Run
 1. Save the code as `library_system.py`
 2. Open terminal or command prompt
 3. Navigate to the project folder
 4. Run the program:
 
 
-### 3. Menu Functions
+### 2. Menu Functions
 1. Borrow Item
 2. Return Item
 3. Search Item
@@ -42,7 +39,7 @@ A simple command-line Library Management System developed in Python, based on Ob
 5. View All Users
 6. Exit System
 
-### 4. Test Instructions
+### 3. Test Instructions
 The system automatically loads test data on startup.
 
 #### Test Users
@@ -55,7 +52,7 @@ The system automatically loads test data on startup.
 - B002: Core Java
 - M001: National Geographic
 
-### 5. Example Operation
+### 4. Example Operation
 1. Choose 1 → Enter U001 → Enter B001 (Borrow book)
 2. Choose 4 → Check status is Borrowed
 3. Choose 2 → Enter B001 (Return book)
@@ -63,7 +60,6 @@ The system automatically loads test data on startup.
 
 ---
 
-## Update Log
 ## Update Log
 
 ### v0.1.0 (2026-03-25)
