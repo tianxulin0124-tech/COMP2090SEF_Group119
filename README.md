@@ -126,9 +126,11 @@ Hu, X. C., Tian, J., & Chen, Y. (2021). Research and development of library info
 # COMP2090SEF Group 119 - Task 2 Final Submission
 
 ## Topic
+Topic
 Self-study and implementation of:
-- Data Structure: Max Heap
-- Algorithm: Heap Sort
+Data Structure: Max Heap
+Sorting Algorithm: Heap Sort
+This project is used to solve the book borrow count sorting problem in our Task 1 library management system.
 
 ## Files
 - `heap_structure.py`: Implementation of Max Heap
@@ -136,14 +138,15 @@ Self-study and implementation of:
 
 ## Functions
 ### MaxHeap
-- `insert(value)`
-- `delete_top()`
-- `heapify_up()`
-- `heapify_down()`
-- `display_heap()`
+- `insert(value)`: Add a new element to the heap
+- `delete_top()`: Remove and return the maximum element
+- `heapify_up()`: Adjust the heap upwards
+- `heapify_down()`: Adjust the heap downwards
+- `display_heap()`: Show current heap content
 
 ### Heap Sort
 - `heap_sort(input_list)`: Returns sorted list in ascending order
+- Time complexity: O(n log n)
 
 ## How to Run
 <<<<<<< Updated upstream
@@ -156,5 +159,20 @@ python heap_sort_alg.py
 >>>>>>> Stashed changes
 
 ## Test Results
-- MaxHeap: Insertion and deletion work correctly
-- HeapSort: Sorts the input list with time complexity O(n log n)
+Normal Test
+Heap input: [5, 3, 8, 10]
+Sort input: [5, 2, 9, 1, 6]
+Output: [1, 2, 5, 6, 9]
+Edge Cases
+Empty heap: returns None
+Single element: works without error
+Limitation
+- The program cannot handle non-numeric input (e.g. string)
+- Will be improved in future versions
+
+## References
+GeeksforGeeks. "Max Heap in Python". https://www.geeksforgeeks.org/max-heap-in-python/ 
+
+GeeksforGeeks. "Heap Sort". https://www.geeksforgeeks.org/heap-sort/
+
+Python Software Foundation. "Python 3.14 Documentation". https://docs.python.org/3/
