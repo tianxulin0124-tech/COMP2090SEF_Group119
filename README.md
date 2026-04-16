@@ -126,18 +126,18 @@ Hu, X. C., Tian, J., & Chen, Y. (2021). Research and development of library info
 https://github.com/tianxulin0124-tech/COMP2090SEF_Group119/issues/6#issue-4276389008
 
 
-# COMP2090SEF Group 119 - Task 2 Final Submission
+# COMP2090SEF Task 2 - Group 119
+Max Heap & Heap Sort Implementation
 
-## Topic
-Topic
-Self-study and implementation of:
-Data Structure: Max Heap
-Sorting Algorithm: Heap Sort
-This project is used to solve the book borrow count sorting problem in our Task 1 library management system.
+## Project Overview
+This project is for COMP2090SEF Task 2. We implemented Max Heap (data structure) and Heap Sort (sorting algorithm) through self-study. The program is used to sort book borrow counts for the library management system in Task 1.
 
 ## Files
-- `heap_structure.py`: Implementation of Max Heap
-- `heap_sort_alg.py`: Heap Sort algorithm using Max Heap
+- Task2/heap_structure.py - Max Heap implementation
+- Task2/heap_sort_alg.py - Heap Sort implementation
+- README.md - Project guide
+- Task2/Task2_Project_Report.pdf - Project report
+- Task2/Task2_IntroductionVideo.mp4 - 5-minute demonstration video
 
 ## Functions
 ### MaxHeap
@@ -159,14 +159,16 @@ This project is used to solve the book borrow count sorting problem in our Task 
 ---
 
 ## Test Results
-Normal Test
-Heap input: [5, 3, 8, 10]
-Sort input: [5, 2, 9, 1, 6]
-Output: [1, 2, 5, 6, 9]
-Edge Cases
-Empty heap: returns None
-Single element: works without error
-Limitation
+-Normal Test
+-Heap input: [5, 3, 8, 10]
+-Sort input: [5, 2, 9, 1, 6]
+-Output: [1, 2, 5, 6, 9]
+
+## Edge Cases
+-Empty heap: returns None
+-Single element: works without error
+
+##Limitation
 - The program cannot handle non-numeric input (e.g. string)
 - Will be improved in future versions
 
